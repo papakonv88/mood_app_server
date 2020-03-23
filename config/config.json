@@ -5,6 +5,6 @@
     },
     "development": {
         "PORT": 3000,
-        "MONGOLAB_URI": "mongodb://localhost:27017/MoodApp"
+        "MONGOLAB_URI": "mongodb://admin:112233aa@ds337718.mlab.com:37718/moodapp"
     }
 }
