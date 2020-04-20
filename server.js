@@ -16,12 +16,13 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 
+
 app.get('/countries', (req, res) => {
 
     dataModel.find({}).then((docs) => {
 
         return docs;
-        
+
     }).then((data) => {
 
         const geojs = {
@@ -38,7 +39,7 @@ app.get('/countries', (req, res) => {
             geojs.features.push(new Entity(data[key]));
         });
 
-        const topology = topojson.topology({data: geojs});
+        const topology = topojson.topology({ data: geojs });
         res.json(topology);
 
     }).catch((err) => {
@@ -52,7 +53,7 @@ app.get('/cities', (req, res) => {
     dataModelCities.find({}).then((docs) => {
 
         return docs;
-        
+
     }).then((data) => {
 
         const geojs = {
@@ -69,13 +70,20 @@ app.get('/cities', (req, res) => {
             geojs.features.push(new Entity(data[key]));
         });
 
-        const topology = topojson.topology({data: geojs});
+        const topology = topojson.topology({ data: geojs });
         res.json(topology);
 
     }).catch((err) => {
         throw new Error;
     });
 
+});
+
+app.post('/form', (req, res) => {
+    console.log(req.body);
+    if (!req.body) {
+    res.sendStatus(200);
+    }
 });
 
 app.listen(port, () => {
