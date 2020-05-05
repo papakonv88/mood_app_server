@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGOLAB_URI, {useNewUrlParser: true});
+mongoose.set('useCreateIndex', true)
+mongoose.connect(process.env.MONGOLAB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
 
